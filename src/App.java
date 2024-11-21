@@ -48,7 +48,7 @@ public class App {
                 "4. Galactica" + "\n" +
                 "5. Start ship" + "\n");
 
-        System.out.print("Elige el destino planetario donde quieres ir -> ");
+        System.out.print("Elige la nave para comenzar el viaje -> ");
         var eleccionNave = scanner.nextInt();
 
         if (eleccionNave >= 0 && eleccionNave <= planetas.length) {
