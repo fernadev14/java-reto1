@@ -23,11 +23,9 @@ public class App {
         // ELEGIR DESTINO
         System.out.println("==================================");
         System.out.println("####### MENU DE PLANETAS ########");
-        System.out.println("\n" + "1. Mercurio" + "\n" +
-                "2. Venus" + "\n" +
-                "3. Marte" + "\n" +
-                "4. Jupiter" + "\n" +
-                "5. Saturno" + "\n");
+        for (int i = 0; i < planetas.length; i++) {
+            System.out.printf("Planeta %d: %s%n", (i + 1), planetas[i]);
+        }
 
         System.out.print("Elige el destino planetario donde quieres ir -> ");
         var eleccionPlaneta = scanner.nextInt();
@@ -42,11 +40,9 @@ public class App {
         System.out.println("");
         System.out.println("==================================");
         System.out.println("####### MENU DE NAVES ########");
-        System.out.println("\n" + "1. Endorex x5050" + "\n" +
-                "2. InteresTelar" + "\n" +
-                "3. Enterprise" + "\n" +
-                "4. Galactica" + "\n" +
-                "5. Start ship" + "\n");
+        for (int i = 0; i < naves.length; i++) {
+            System.out.printf("Nave %d: %s%n", (i + 1), naves[i]);
+        }
 
         System.out.print("Elige la nave para comenzar el viaje -> ");
         var eleccionNave = scanner.nextInt();
@@ -57,6 +53,7 @@ public class App {
 
         // CALCULAR DISTANCIA Y TIEMPO
 
+        scanner.close();
     }
 
 }
