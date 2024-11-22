@@ -28,14 +28,34 @@ public class App {
 
         Arrays.sort(planetas);
         Arrays.sort(naves);
+        double[] distancia = {
+            2000,
+            1500,
+            3450,
+            1789,
+            2598
+        };
+
+        double[] velocidad = {
+            500,
+            600,
+            450,
+            1000,
+            2000
+        };
+
+
+        System.out.println("Bienvenido a spaceX, la empresa de viajes espaciales");
 
         // PEDIR NOMBRE AL USUARIO
         while (nombre.isEmpty()) {
-            System.out.print("Ingresa tu nombre -> ");
+            System.out.print("Por favor ingresa su nombre -> ");
             nombre = scanner.nextLine();
             nombre = capitalizeFirstLetter(nombre);
         }
         System.out.println("");
+
+        System.out.println("A continuación te podras ver los destinos que tenemos disponibles en el momento:");
 
         // ELEGIR DESTINO
         System.out.println("==================================");
@@ -50,6 +70,8 @@ public class App {
             eleccionPlaneta = scanner.nextInt();
         }
         System.out.printf("%nHas eligido viajar a: %s%n%n", planetas[eleccionPlaneta - 1].toUpperCase());
+
+        System.out.println("A continuación veras las naves que tenemos disponibles:");
 
         // ELEGIR NAVE
         System.out.println("==================================");
@@ -67,6 +89,13 @@ public class App {
         System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO!", nombre.toUpperCase());
 
         // CALCULAR DISTANCIA Y TIEMPO
+        double calcularDistancia = distancia[eleccionPlaneta - 1];
+        double calcularVelocidad = velocidad[eleccionNave - 1];
+        double calcularTiempo = calcularDistancia/calcularVelocidad;
+
+        System.out.printf("%n distancia al planeta %s %.1f millones de KM %n", planetas[eleccionPlaneta - 1], calcularDistancia);
+        System.out.printf("%n tiempo del viaje %s %.1f  x horas %n", naves[eleccionNave - 1], calcularTiempo);
+
 
         scanner.close();
     }
