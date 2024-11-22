@@ -28,22 +28,21 @@ public class App {
 
         Arrays.sort(planetas);
         Arrays.sort(naves);
-        double[] distancia = {
-            2000,
-            1500,
-            3450,
-            1789,
-            2598
+        double[] distancias = {
+                2000,
+                1500,
+                3450,
+                1789,
+                2598
         };
 
-        double[] velocidad = {
-            500,
-            600,
-            450,
-            1000,
-            2000
+        double[] velocidades = {
+                500,
+                600,
+                450,
+                1000,
+                2000
         };
-
 
         System.out.println("Bienvenido a spaceX, la empresa de viajes espaciales");
 
@@ -89,13 +88,14 @@ public class App {
         System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO!", nombre.toUpperCase());
 
         // CALCULAR DISTANCIA Y TIEMPO
-        double calcularDistancia = distancia[eleccionPlaneta - 1];
-        double calcularVelocidad = velocidad[eleccionNave - 1];
-        double calcularTiempo = calcularDistancia/calcularVelocidad;
+        double distancia = distancias[eleccionPlaneta - 1];
+        double velocidad = velocidades[eleccionNave - 1];
+        double tiempo = distancia / velocidad;
 
-        System.out.printf("%n distancia al planeta %s %.1f millones de KM %n", planetas[eleccionPlaneta - 1], calcularDistancia);
-        System.out.printf("%n tiempo del viaje %s %.1f  x horas %n", naves[eleccionNave - 1], calcularTiempo);
-
+        System.out.printf("%nDistancia al planeta %s %.1f millones de KM %n", planetas[eleccionPlaneta - 1],
+                distancia);
+        System.out.printf("%nTiempo del viaje con la nave %s es de %.1f horas %n", naves[eleccionNave - 1],
+                tiempo);
 
         scanner.close();
     }
