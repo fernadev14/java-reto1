@@ -28,6 +28,7 @@ public class App {
 
         Arrays.sort(planetas);
         Arrays.sort(naves);
+
         double[] distancias = {
                 2000,
                 1500,
@@ -44,6 +45,22 @@ public class App {
                 2000
         };
 
+        double[] combustiblesPorDia = {
+                1000,
+                5000,
+                7650,
+                4980,
+                10000
+        };
+
+        double[] oxigenoNavePorDia = {
+                3.5,
+                6.7,
+                3.7,
+                9.8,
+                5.9
+        };
+
         System.out.println("Bienvenido a spaceX, la empresa de viajes espaciales");
 
         // PEDIR NOMBRE AL USUARIO
@@ -56,7 +73,7 @@ public class App {
 
         System.out.println("A continuación te podras ver los destinos que tenemos disponibles en el momento:");
 
-        // ELEGIR DESTINO
+        // 1. ELEGIR DESTINO
         System.out.println("==================================");
         System.out.println("####### MENU DE PLANETAS ########");
         for (int i = 0; i < planetas.length; i++) {
@@ -85,17 +102,37 @@ public class App {
         }
         System.out.printf("%nHas eligido la nave: %s%n", naves[eleccionNave - 1].toUpperCase());
 
-        System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO!", nombre.toUpperCase());
-
-        // CALCULAR DISTANCIA Y TIEMPO
+        // 2. CALCULAR DISTANCIA Y TIEMPO
         double distancia = distancias[eleccionPlaneta - 1];
         double velocidad = velocidades[eleccionNave - 1];
-        double tiempo = distancia / velocidad;
+        double timeYear = distancia / velocidad;
 
-        System.out.printf("%nDistancia al planeta %s %.1f millones de KM %n", planetas[eleccionPlaneta - 1],
-                distancia);
-        System.out.printf("%nTiempo del viaje con la nave %s es de %.1f horas %n", naves[eleccionNave - 1],
-                tiempo);
+        System.out.printf("%nDistancia al planeta %s %.1f millones de KM %n", planetas[eleccionPlaneta - 1], distancia);
+        System.out.printf("%nTiempo del viaje con la nave %s es de %.1f años %n", naves[eleccionNave - 1], timeYear);
+
+        System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO! %n%n", nombre.toUpperCase());
+
+        // 3. GESTIONAR RECURSOS DE LA NAVE
+        System.out.printf("%n==============================================================%n");
+        System.out.printf(
+                "%n%nA CONTINUACIÓN VERAS LOS RECURSOS NECESARIOS QUE NECESITAS PARA ESTA AVENTURA ESPACIAL! %n%n");
+
+        // conversion de años a horas
+        var horasTotales = timeYear * 365 * 24;
+
+        // Recursos de combustible
+        double recursoCombustiblePorHora = combustiblesPorDia[eleccionNave - 1] / 24;
+        double calculoCombustibleRequerido = recursoCombustiblePorHora * horasTotales;
+
+        // recursos de oxigeno
+        double recursoOxigenoPorDia = oxigenoNavePorDia[eleccionNave - 1];
+        double calculoOxigenoRequerido = recursoOxigenoPorDia * (timeYear * 365);
+
+        System.out.printf("Para viajar al planeta %s necesitas de combustible %.2f toneladas %n",
+                planetas[eleccionPlaneta - 1], calculoCombustibleRequerido);
+        System.out.printf("Para viajar al planeta %s necesitas una cantidad de oxigeno de %.2f KG %n",
+                planetas[eleccionPlaneta - 1],
+                calculoOxigenoRequerido);
 
         scanner.close();
     }
