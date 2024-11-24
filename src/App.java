@@ -147,8 +147,11 @@ public class App {
                                 naves[opcionSalvavidasNave - 1],
                                 timeYear);
 
-                System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO! %n%n", nombre.toUpperCase());
-                System.out.printf("%n ======================================================== %n");
+                // Limpiar consola despues de una espera de 20 segundos
+                System.out.printf(
+                                "%n%n ****** ESPERA DE 20 SEGUNDOS MIENTRAS LEES LO NECESARIO Y EMPEZAMOS EL DESPEGUE ****** %n%n");
+                Thread.sleep(20000);
+                limpiarConsola();
 
                 // 3. GESTIONAR RECURSOS DE LA NAVE
                 System.out.printf(
@@ -174,6 +177,14 @@ public class App {
                                 "********* 2. Para viajar al planeta %s necesitas una cantidad de oxigeno de %.2f KG ********* %n",
                                 planetas[opcionSalvavidasPlaneta - 1],
                                 calculoOxigenoRequerido);
+
+                System.out.printf(
+                                "%n%n ****** ESPERA DE 20 SEGUNDOS MIENTRAS LEES LO NECESARIO Y EMPEZAMOS EL DESPEGUE ****** %n%n");
+
+                System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO! %n%n", nombre.toUpperCase());
+                System.out.printf("%n ======================================================== %n");
+                Thread.sleep(20000);
+                limpiarConsola();
 
                 for (int i = 1; i <= 1; i++) {
                         limpiarConsola();
