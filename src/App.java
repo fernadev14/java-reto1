@@ -149,8 +149,8 @@ public class App {
 
                 // Limpiar consola despues de una espera de 20 segundos
                 System.out.printf(
-                                "%n%n ****** ESPERA DE 20 SEGUNDOS MIENTRAS LEES LO NECESARIO Y EMPEZAMOS EL DESPEGUE ****** %n%n");
-                Thread.sleep(20000);
+                                "%n%n ****** Lee la informació y presiona enter para continuar ****** %n%n");
+                                scanner.nextLine();
                 limpiarConsola();
 
                 // 3. GESTIONAR RECURSOS DE LA NAVE
@@ -179,11 +179,12 @@ public class App {
                                 calculoOxigenoRequerido);
 
                 System.out.printf(
-                                "%n%n ****** ESPERA DE 20 SEGUNDOS MIENTRAS LEES LO NECESARIO Y EMPEZAMOS EL DESPEGUE ****** %n%n");
+                                "%n%n ****** EMPEZAREMOS EL DESPEGUE ****** %n%n");
 
-                System.out.printf("%n %s! VES PREPARANDOTE PARA EL VIAJE AL ESPACIO! %n%n", nombre.toUpperCase());
+                System.out.printf("%n %s! VE PREPARANDOTE PARA EL VIAJE AL ESPACIO! %n%n", nombre.toUpperCase());
                 System.out.printf("%n ======================================================== %n");
-                Thread.sleep(20000);
+                System.out.println("Presiona enter para continuar");
+                scanner.nextLine();
                 limpiarConsola();
 
                 for (int i = 1; i <= 1; i++) {
@@ -252,7 +253,7 @@ public class App {
                                                         "🚨 Has activado el sistema de emergencia, pero la fuga persiste. ¡Cuidado! ⚠️");
                                 } else {
                                         System.out.println(
-                                                        "💀 Has ignorado la alerta. ¡La nave se quedó sin oxígeno! ❌");
+                                                        "💀 Has ignorado la alerta. ¡La nave  quedó sin oxígeno! ❌");
                                 }
                                 break;
 
@@ -300,6 +301,16 @@ public class App {
                                 break;
                 }
                 System.out.printf("%n ========================================================= %n%n");
+
+                System.out.println("Felicitaciones, has terminado el viaje con éxito, a continuación vitacora del viaje:");
+                System.out.printf("%n combustible consumido %s %n oxigeno consumido %s %n Distancia recorrida %s %n Tiempo de viaje %s %n", calculoCombustibleRequerido, calculoOxigenoRequerido, distancia, timeYear);
+                System.out.printf("%n %s aunque el viaje tuvo inconvenientes nunca perdiste la calma y siempre tomaste la mejor decisión, felicitaciones por tu destresa, gracias por volar con nosotros, hasta un proximo viaje.", nombre);
+
+            
+
+
+
+
                 scanner.close();
         }
 
