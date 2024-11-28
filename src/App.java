@@ -150,7 +150,7 @@ public class App {
                 // Limpiar consola despues de una espera de 20 segundos
                 System.out.printf(
                                 "%n%n ****** Lee la informació y presiona enter para continuar ****** %n%n");
-                                scanner.nextLine();
+                scanner.nextLine();
                 limpiarConsola();
 
                 // 3. GESTIONAR RECURSOS DE LA NAVE
@@ -302,14 +302,72 @@ public class App {
                 }
                 System.out.printf("%n ========================================================= %n%n");
 
-                System.out.println("Felicitaciones, has terminado el viaje con éxito, a continuación vitacora del viaje:");
-                System.out.printf("%n combustible consumido %s %n oxigeno consumido %s %n Distancia recorrida %s %n Tiempo de viaje %s %n", calculoCombustibleRequerido, calculoOxigenoRequerido, distancia, timeYear);
-                System.out.printf("%n %s aunque el viaje tuvo inconvenientes nunca perdiste la calma y siempre tomaste la mejor decisión, felicitaciones por tu destresa, gracias por volar con nosotros, hasta un proximo viaje.", nombre);
+                // 5. MONITOREO DEL VIAJE
+                System.out.print("Quieres ver el monitoreo del viaje (si, no)? -> ");
+                scanner.nextLine();
+                var monitoreo = scanner.nextLine();
 
-            
+                double distanciaRecorrida = 0;
+                double recursosRestantes = calculoCombustibleRequerido;
+                double tiempoRestante = horasTotales;
+                int distanciaTotal = 100;
 
+                // Cantidad de progreso por cada paso (puedes ajustar esto según el número de
+                // pasos)
+                double progresoPorPaso = distancia / 10;
+                double consumoRecursosPorPaso = calculoCombustibleRequerido / 10;
+                double tiempoPorPaso = horasTotales / 10;
 
+                boolean viajeExitoso = true;
+                double tiempoExtraSobrevivencia = 0;
 
+                if (monitoreo.equalsIgnoreCase("si")) {
+                        int pasos = 10;
+                        for (int i = 1; i <= pasos; i++) {
+                                // actualizar estado
+                                distanciaRecorrida += progresoPorPaso;
+                                recursosRestantes -= consumoRecursosPorPaso;
+                                tiempoRestante -= tiempoPorPaso;
+
+                                // Mostrar estado actual del viaje
+                                mostrarEstadoViaje(distanciaRecorrida, recursosRestantes, tiempoRestante);
+
+                                // Simular espera
+                                Thread.sleep(1000);
+
+                                // Verificar condiciones críticas
+                                if (recursosRestantes <= 0) {
+                                        System.out.println(
+                                                        "❌ Los recursos se han agotado. ¡El viaje no puede continuar!");
+                                        tiempoExtraSobrevivencia = horasTotales - (i * tiempoPorPaso);
+                                        viajeExitoso = false;
+                                        break;
+                                }
+
+                                if (distanciaRecorrida >= distanciaTotal) {
+                                        System.out.println("✅ Has alcanzado tu destino. ¡Buen trabajo!");
+                                        break;
+                                }
+                        }
+                }
+
+                // Evaluar resultado final
+                System.out.println("===============================================");
+                if (viajeExitoso) {
+                        System.out.println("🎉 Felicitaciones, el viaje ha sido un éxito total.");
+                        System.out.printf(
+                                        "%nVitácora del viaje:%nCombustible consumido: %.2f toneladas%nOxígeno consumido: %.2f kg%nDistancia recorrida: %.2f millones de km%nTiempo de viaje: %.1f años%n",
+                                        calculoCombustibleRequerido, calculoOxigenoRequerido, distancia, timeYear);
+                        System.out.printf(
+                                        "%n%s, aunque el viaje tuvo inconvenientes, nunca perdiste la calma y tomaste buenas decisiones. ¡Gracias por volar con nosotros!%n",
+                                        nombre);
+                } else {
+                        System.out.println("😔 El viaje no se completó debido a falta de recursos.");
+                        System.out.printf(
+                                        "Sin embargo, las provisiones de la nave pueden mantener a la tripulación viva por %.2f horas más mientras esperan ayuda.%n",
+                                        tiempoExtraSobrevivencia);
+                        System.out.printf("%n%s, fue un viaje lleno de desafíos. ¡Gracias por intentarlo!%n", nombre);
+                }
 
                 scanner.close();
         }
@@ -351,5 +409,14 @@ public class App {
                         System.out.println(nave);
                         Thread.sleep(500);
                 }
+        }
+
+        public static void mostrarEstadoViaje(double distanciaRecorrida, double recursosRestantes,
+                        double tiempoRestante) {
+                System.out.println("\n--- Estado del Viaje ---");
+                System.out.println("🚀 Distancia recorrida: " + distanciaRecorrida + "%");
+                System.out.println("🔋 Recursos restantes: " + recursosRestantes + "%");
+                System.out.println("⏳ Tiempo restante: " + tiempoRestante + " horas");
+                System.out.println("------------------------");
         }
 }
